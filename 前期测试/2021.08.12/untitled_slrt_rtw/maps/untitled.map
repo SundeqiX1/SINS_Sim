@@ -1,0 +1,40 @@
+const signalNameMap untitled_BIOMAP[] =
+  {
+	{0,0,1},
+{-1, -1,1}
+  };
+const signalLabelMap untitled_LBLMAP[] =
+  {
+	{0,0,1},
+{-1, -1,1}
+  };
+const signalIdMap untitled_SIDMAP[] =
+  {
+	{0,0,1},
+{-1, -1,1}
+  };
+const SortedBlockSignals  untitled_SBIO[] ={
+       0,
+      -1
+};
+const SortedBlockLabels  untitled_SLBL[] ={
+       0,
+      -1
+};
+const OldSortedBlockParameters  untitled_PTIDSMAP[] ={
+	{-1,-1},
+};
+const OldSortedBlockParameters  untitled_PTNAMESMAP[] ={
+	{-1,-1},
+};
+const SortedBlockParameters  untitled_SPTMAP[] ={
+      -1
+};
+
+
+const EnumElemMapInfo untitled_dtmap[] = 
+{
+	{
+		NULL,NULL,0
+	},
+};

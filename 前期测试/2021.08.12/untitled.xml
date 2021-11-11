@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><Root>
+      
+                    <signal>
+              <sigName>Serial Receive</sigName>
+              <xpcsigName>Serial Receive</xpcsigName>
+              <sigWidth>1</sigWidth>
+              <sigDim>[1, 1]</sigDim>
+            </signal>
+
+</Root>

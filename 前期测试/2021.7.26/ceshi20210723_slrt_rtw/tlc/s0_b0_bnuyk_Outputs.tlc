@@ -1,0 +1,44 @@
+%implements s0_b0_bnuyk_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcOutputsFcnOfS0B0 = OpaqueTLCBlockFcn("Outputs", 0, 0, 0, 2)
+%<SLibGenerateExtModeOutput(system)>
+%<tlcOutputsFcnOfS0B0>\
+/* Integrator: '<Root>/Integrator' */
+ceshi20210723_B.Integrator = ceshi20210723_X.Integrator_CSTATE;
+/* Integrator: '<Root>/Integrator1' */
+ceshi20210723_B.Integrator1 = ceshi20210723_X.Integrator1_CSTATE;
+/* Integrator: '<Root>/Integrator2' */
+ceshi20210723_B.Integrator2 = ceshi20210723_X.Integrator2_CSTATE;
+/* Integrator: '<Root>/Integrator6' */
+ceshi20210723_B.Integrator6 = ceshi20210723_X.Integrator6_CSTATE;
+/* Integrator: '<Root>/Integrator4' */
+ceshi20210723_B.Integrator4 = ceshi20210723_X.Integrator4_CSTATE;
+/* Integrator: '<Root>/Integrator8' */
+ceshi20210723_B.Integrator8 = ceshi20210723_X.Integrator8_CSTATE;
+/* Gain: '<Root>/Gain' */
+ceshi20210723_B.Gain = ceshi20210723_P.Gain_Gain * ceshi20210723_B.SFunction[3];
+/* Gain: '<Root>/Gain1' */
+ceshi20210723_B.Gain1 = ceshi20210723_P.Gain1_Gain * ceshi20210723_B.SFunction[4];
+/* Gain: '<Root>/Gain2' */
+ceshi20210723_B.Gain2 = ceshi20210723_P.Gain2_Gain * ceshi20210723_B.SFunction[5];
+/* Integrator: '<Root>/Integrator3' */
+ceshi20210723_B.Integrator3 = ceshi20210723_X.Integrator3_CSTATE;
+/* Integrator: '<Root>/Integrator5' */
+ceshi20210723_B.Integrator5 = ceshi20210723_X.Integrator5_CSTATE;
+/* Integrator: '<Root>/Integrator7' */
+ceshi20210723_B.Integrator7 = ceshi20210723_X.Integrator7_CSTATE;
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction

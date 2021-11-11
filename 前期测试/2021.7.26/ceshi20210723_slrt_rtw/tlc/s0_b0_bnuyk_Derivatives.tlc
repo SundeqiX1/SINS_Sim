@@ -1,0 +1,38 @@
+%implements s0_b0_bnuyk_Derivatives "C"
+
+%function Derivatives(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+XDot_ceshi20210723_T *_rtXdot;
+%closefile localVarDecl
+_rtXdot = %<(SLibCG_SE(SLibGetContStatesDerivativeStructPtr()))>;
+/* Derivatives for Integrator: '<Root>/Integrator' */
+_rtXdot->Integrator_CSTATE = ceshi20210723_B.SFunction[0];
+/* Derivatives for Integrator: '<Root>/Integrator1' */
+_rtXdot->Integrator1_CSTATE = ceshi20210723_B.SFunction[1];
+/* Derivatives for Integrator: '<Root>/Integrator2' */
+_rtXdot->Integrator2_CSTATE = ceshi20210723_B.SFunction[2];
+/* Derivatives for Integrator: '<Root>/Integrator6' */
+_rtXdot->Integrator6_CSTATE = ceshi20210723_B.Integrator5;
+/* Derivatives for Integrator: '<Root>/Integrator4' */
+_rtXdot->Integrator4_CSTATE = ceshi20210723_B.Integrator3;
+/* Derivatives for Integrator: '<Root>/Integrator8' */
+_rtXdot->Integrator8_CSTATE = ceshi20210723_B.Integrator7;
+/* Derivatives for Integrator: '<Root>/Integrator3' */
+_rtXdot->Integrator3_CSTATE = ceshi20210723_B.Gain;
+/* Derivatives for Integrator: '<Root>/Integrator5' */
+_rtXdot->Integrator5_CSTATE = ceshi20210723_B.Gain1;
+/* Derivatives for Integrator: '<Root>/Integrator7' */
+_rtXdot->Integrator7_CSTATE = ceshi20210723_B.Gain2;
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Derivatives(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 4, fcnProtoType)>
+%<LibSetSystemField(system, "CachedDerivativeLocalVars", localVarDecl)>
+%endfunction

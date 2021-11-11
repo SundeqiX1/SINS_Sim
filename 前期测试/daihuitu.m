@@ -1,0 +1,33 @@
+clear all;
+close all;
+instrreset;
+s=serial('com4','baudrate',115200);fopen(s);
+t=0;
+cnt=0;
+a=[0 0 0];
+A=[0 0 0];
+tt=0;
+pax=0;pay=0;paz=0;pAx=0;pAy=0;pAz=0;
+while (1)
+    tic;
+            Fr=fread(s,29,'uint8');
+            hex=dec2hex(Fr);
+ax=typecast(uint8(([Fr([5]) Fr([6]) Fr([7]) Fr([8])])),'single');
+ay=typecast(uint8(([Fr([9]) Fr([10]) Fr([11]) Fr([12])])),'single');
+az=typecast(uint8(([Fr([13]) Fr([14]) Fr([15]) Fr([16])])),'single');
+Ax=typecast(uint8(([Fr([17]) Fr([18]) Fr([19]) Fr([20])])),'single');
+Ay=typecast(uint8(([Fr([21]) Fr([22]) Fr([23]) Fr([24])])),'single');
+Az=typecast(uint8(([Fr([25]) Fr([26]) Fr([27]) Fr([28])])),'single');
+format long;ax;format long;ay;format long;az;format long;Ax;format long;Ay;format long;Az;
+pax=[pax;ax];pay=[pay;ay];paz=[paz;az];
+pAx=[pAx;Ax];pAy=[pAy;Ay];pAz=[pAz;Az];
+a=[a;ax ay az];
+A=[A;Ax Ay Az];
+tt=[tt;t];
+subplot(2,1,1);plot(tt,pax,'b');hold on;plot(tt,pay,'r');hold on;plot(tt,paz,'g');hold on;
+legend('ax','ay','az');xlabel('s');ylabel('°/s');title('三轴角速度');
+subplot(2,1,2);plot(tt,pAx,'b');hold on;plot(tt,pAy,'r');hold on;plot(tt,pAz,'g');hold on;
+legend('Ax','Ay','Az');xlabel('s');ylabel('g');title('三轴加速度');
+t=t+toc;
+end
+fclose(s);

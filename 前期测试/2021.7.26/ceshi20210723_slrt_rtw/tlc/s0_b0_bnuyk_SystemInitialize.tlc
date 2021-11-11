@@ -1,0 +1,38 @@
+%implements s0_b0_bnuyk_SystemInitialize "C"
+
+%function SystemInitialize(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcInitializeConditionsFcnOfS0B0 = OpaqueTLCBlockFcn("InitializeConditions", 0, 0, 0, 1)
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+%<tlcInitializeConditionsFcnOfS0B0>\
+/* InitializeConditions for Integrator: '<Root>/Integrator' */
+ceshi20210723_X.Integrator_CSTATE = ceshi20210723_P.Integrator_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator1' */
+ceshi20210723_X.Integrator1_CSTATE = ceshi20210723_P.Integrator1_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator2' */
+ceshi20210723_X.Integrator2_CSTATE = ceshi20210723_P.Integrator2_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator6' */
+ceshi20210723_X.Integrator6_CSTATE = ceshi20210723_P.Integrator6_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator4' */
+ceshi20210723_X.Integrator4_CSTATE = ceshi20210723_P.Integrator4_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator8' */
+ceshi20210723_X.Integrator8_CSTATE = ceshi20210723_P.Integrator8_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator3' */
+ceshi20210723_X.Integrator3_CSTATE = ceshi20210723_P.Integrator3_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator5' */
+ceshi20210723_X.Integrator5_CSTATE = ceshi20210723_P.Integrator5_IC;
+/* InitializeConditions for Integrator: '<Root>/Integrator7' */
+ceshi20210723_X.Integrator7_CSTATE = ceshi20210723_P.Integrator7_IC;
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void SystemInitialize(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%endfunction
