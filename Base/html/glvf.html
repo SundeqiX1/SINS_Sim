@@ -1,0 +1,218 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>glvf</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-08-23"><meta name="DC.source" content="glvf.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> glv1 = glvf(Re, f, wie)
+<span class="comment">% &#25463;&#32852;&#24815;&#23548;&#20840;&#23616;&#32467;&#26500;&#21464;&#37327;&#21021;&#22987;&#21270;&#20989;&#25968;</span>
+<span class="comment">% &#26679;&#20363;: glv = glvf(Re, f, wie)</span>
+<span class="comment">% &#36755;&#20837;: Re - &#22320;&#29699;&#36196;&#36947;&#38271;&#21322;&#36724;</span>
+<span class="comment">%       f - &#25153;&#29575;</span>
+<span class="comment">%       wie - &#22320;&#29699;&#33258;&#36716;&#35282;&#36895;&#24230;</span>
+<span class="comment">% &#36755;&#20986;: glv1 - &#20840;&#23616;&#21464;&#37327;&#32467;&#26500;&#20307;&#25968;&#32452;</span>
+
+<span class="comment">% &#21442;&#32771;&#36164;&#26009;&#65306;&#20005;&#24685;&#25935;&#25945;&#25480;&#65292;&#38485;&#35199;&#35199;&#23433;&#65292;&#35199;&#21271;&#24037;&#19994;&#22823;&#23398;&#65292;PSIN&#24037;&#20855;&#31665;&#31243;&#24207;&#21450;&#30456;&#20851;&#25945;&#26448;</span>
+<span class="comment">% &#20462;&#25913;&#65306;&#23385;&#24503;&#22855;&#65292;&#27743;&#33487;&#24464;&#24030;&#65292;&#20013;&#22269;&#30719;&#19994;&#22823;&#23398;&#65292;&#30719;&#23665;&#26234;&#33021;&#37319;&#25496;&#35013;&#22791;&#23454;&#39564;&#23460;</span>
+<span class="comment">% &#31532;&#19968;&#29256;&#65306;2021&#24180;8&#26376;21&#26085;</span>
+
+<span class="keyword">global</span> glv
+    <span class="keyword">if</span> ~exist(<span class="string">'Re'</span>, <span class="string">'var'</span>),  Re = [];  <span class="keyword">end</span>
+    <span class="keyword">if</span> ~exist(<span class="string">'f'</span>, <span class="string">'var'</span>),   f = [];  <span class="keyword">end</span>
+    <span class="keyword">if</span> ~exist(<span class="string">'wie'</span>, <span class="string">'var'</span>), wie = [];  <span class="keyword">end</span>
+    <span class="keyword">if</span> isempty(Re),  Re = 6378137;  <span class="keyword">end</span>
+    <span class="keyword">if</span> isempty(f),   f = 1/298.257;  <span class="keyword">end</span>
+    <span class="keyword">if</span> isempty(wie), wie = 7.2921151467e-5;  <span class="keyword">end</span>
+    glv.Re = Re;                    <span class="comment">% &#22320;&#29699;&#36196;&#36947;&#38271;&#21322;&#36724;</span>
+    glv.meru = glv.wie/1000;        <span class="comment">% &#22320;&#29699;&#33258;&#36716;&#35282;&#36895;&#24230;/1000</span>
+    glv.g0 = 9.7803267714;          <span class="comment">% &#37325;&#21147;&#21152;&#36895;&#24230;g&#65288;&#24341;&#21147;&#65289;</span>
+    glv.mg = 1.0e-3*glv.g0;         <span class="comment">% mg</span>
+    glv.ug = 1.0e-6*glv.g0;         <span class="comment">% ug</span>
+    glv.mGal = 1.0e-3*0.01;         <span class="comment">% milli Gal = 1cm/s^2 ~= 1.0E-6*g0</span>
+    glv.ugpg2 = glv.ug/glv.g0^2;    <span class="comment">% ug/g^2</span>
+    glv.ws = 1/sqrt(glv.Re/glv.g0); <span class="comment">% &#33298;&#21202;&#39057;&#29575;</span>
+    glv.ppm = 1.0e-6;               <span class="comment">% &#30334;&#19975;&#20998;&#20043;&#20960;</span>
+    glv.f = f;                      <span class="comment">% &#25153;&#29575;</span>
+    glv.Rp = (1-glv.f)*glv.Re;      <span class="comment">% &#30701;&#21322;&#36724;</span>
+    glv.e = sqrt(2*glv.f-glv.f^2); glv.e2 = glv.e^2; <span class="comment">% &#31532;&#19968;&#20559;&#24515;&#36317;</span>
+    glv.ep = sqrt(glv.Re^2-glv.Rp^2)/glv.Rp; glv.ep2 = glv.ep^2; <span class="comment">% &#31532;&#20108;&#20559;&#24515;&#36317;</span>
+    glv.wie = wie;                  <span class="comment">% &#22320;&#29699;&#33258;&#36716;&#35282;&#36895;&#24230;</span>
+    glv.deg = pi/180;               <span class="comment">% &#24359;&#24230;</span>
+    glv.min = glv.deg/60;           <span class="comment">% &#24359;&#20998;</span>
+    glv.sec = glv.min/60;           <span class="comment">% &#24359;&#31186;</span>
+    glv.hur = 3600;                 <span class="comment">% &#26102;&#38388; &#23567;&#26102; (1hur=3600second)</span>
+    glv.dps = pi/180/1;             <span class="comment">% &#24359;&#24230;/&#31186;</span>
+    glv.dph = glv.deg/glv.hur;      <span class="comment">% &#24359;&#24230;/&#23567;&#26102;</span>
+    glv.dpss = glv.deg/sqrt(1);     <span class="comment">% &#24359;&#24230;/sqrt&#65288;&#31186;&#65289;</span>
+    glv.dpsh = glv.deg/sqrt(glv.hur);  <span class="comment">% &#24359;&#24230;/sqrt&#65288;&#23567;&#26102;&#65289;</span>
+    glv.dphpsh = glv.dph/sqrt(glv.hur); <span class="comment">% (&#24359;&#24230;/&#23567;&#26102;) / sqrt(&#23567;&#26102;)</span>
+    glv.dph2 = glv.dph/glv.hur;    <span class="comment">% &#65288;&#24359;&#24230;/&#23567;&#26102;&#65289;/&#23567;&#26102;</span>
+    glv.Hz = 1/1;                   <span class="comment">% Hz</span>
+    glv.dphpsHz = glv.dph/glv.Hz;   <span class="comment">% (&#24359;&#24230;/&#23567;&#26102;) / sqrt(Hz)</span>
+    glv.dphpg = glv.dph/glv.g0;     <span class="comment">% &#65288;&#24359;&#24230;/&#23567;&#26102;&#65289;/g</span>
+    glv.dphpg2 = glv.dphpg/glv.g0;  <span class="comment">% &#65288;&#24359;&#24230;/&#23567;&#26102;&#65289; / g^2</span>
+    glv.ugpsHz = glv.ug/sqrt(glv.Hz);  <span class="comment">% ug / sqrt(Hz)</span>
+    glv.ugpsh = glv.ug/sqrt(glv.hur); <span class="comment">% ug / sqrt(&#23567;&#26102;)</span>
+    glv.mpsh = 1/sqrt(glv.hur);     <span class="comment">% m / sqrt(&#23567;&#26102;)</span>
+    glv.mpspsh = 1/1/sqrt(glv.hur); <span class="comment">% (m/s) / sqrt(&#23567;&#26102;), 1*mpspsh~=1700*ugpsHz</span>
+    glv.ppmpsh = glv.ppm/sqrt(glv.hur); <span class="comment">% ppm / sqrt(&#23567;&#26102;)</span>
+    glv.mil = 2*pi/6000;            <span class="comment">% mil</span>
+    glv.nm = 1853;                  <span class="comment">% &#28023;&#37324;</span>
+    glv.kn = glv.nm/glv.hur;        <span class="comment">% &#33410;&#65288;&#36895;&#24230;&#21333;&#20301;&#65289;</span>
+    glv.wm_1 = [0,0,0]; glv.vm_1 = [0,0,0];   <span class="comment">% &#38464;&#34746;&#20202;&#21644;&#21152;&#36895;&#24230;&#35745;&#21021;&#22987;&#21270;</span>
+    glv.cs = [                      <span class="comment">% &#22278;&#38181;&#21644;&#21010;&#26728;&#35823;&#24046;&#34917;&#20607;&#31995;&#25968;</span>
+        [2,    0,    0,    0,    0    ]/3
+        [9,    27,   0,    0,    0    ]/20
+        [54,   92,   214,  0,    0    ]/105
+        [250,  525,  650,  1375, 0    ]/504
+        [2315, 4558, 7296, 7834, 15797]/4620 ];
+    glv.csmax = size(glv.cs,1)+1;  <span class="comment">% &#26368;&#22823;&#23376;&#26679;&#26412;&#25968;</span>
+    glv.v0 = [0;0;0];    <span class="comment">% 3x1 &#38646;&#21521;&#37327;</span>
+    glv.qI = [1;0;0;0];  <span class="comment">% &#21333;&#20301;&#22235;&#20803;&#25968;</span>
+    glv.I33 = eye(3); glv.o33 = zeros(3);  <span class="comment">% 3x3 &#21333;&#20301; &amp; &#38646; &#30697;&#38453;</span>
+    glv.pos0 = [34.246048*glv.deg; 108.909664*glv.deg; 380]; <span class="comment">%  &#23548;&#33322;&#21021;&#22987; &#8216;&#32428;&#24230;&#12289;&#32463;&#24230;&#12289;&#39640;&#24230;&#8217;</span>
+    glv.eth = []; glv.eth = earth(glv.pos0);
+    [glv.rootpath, glv.datapath, glv.mytestflag] = psinsenvi;
+    glv1 = glv;
+</pre><pre class="codeoutput error">&#24341;&#29992;&#20102;&#19981;&#23384;&#22312;&#30340;&#23383;&#27573; 'wie'&#12290;
+
+&#20986;&#38169; glvf (line 21)
+    glv.meru = glv.wie/1000;        % &#65533;&#65533;&#65533;&#65533;&#65533;&#65533;&#1514;&#65533;&#65533;&#65533;&#1654;&#65533;/1000
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function glv1 = glvf(Re, f, wie)
+% 捷联惯导全局结构变量初始化函数
+% 样例: glv = glvf(Re, f, wie)
+% 输入: Re - 地球赤道长半轴
+%       f - 扁率
+%       wie - 地球自转角速度
+% 输出: glv1 - 全局变量结构体数组
+
+% 参考资料：严恭敏教授，陕西西安，西北工业大学，PSIN工具箱程序及相关教材
+% 修改：孙德奇，江苏徐州，中国矿业大学，矿山智能采掘装备实验室
+% 第一版：2021年8月21日
+
+global glv
+    if ~exist('Re', 'var'),  Re = [];  end
+    if ~exist('f', 'var'),   f = [];  end
+    if ~exist('wie', 'var'), wie = [];  end
+    if isempty(Re),  Re = 6378137;  end
+    if isempty(f),   f = 1/298.257;  end
+    if isempty(wie), wie = 7.2921151467e-5;  end
+    glv.Re = Re;                    % 地球赤道长半轴
+    glv.meru = glv.wie/1000;        % 地球自转角速度/1000
+    glv.g0 = 9.7803267714;          % 重力加速度g（引力）
+    glv.mg = 1.0e-3*glv.g0;         % mg
+    glv.ug = 1.0e-6*glv.g0;         % ug
+    glv.mGal = 1.0e-3*0.01;         % milli Gal = 1cm/s^2 ~= 1.0E-6*g0
+    glv.ugpg2 = glv.ug/glv.g0^2;    % ug/g^2
+    glv.ws = 1/sqrt(glv.Re/glv.g0); % 舒勒频率
+    glv.ppm = 1.0e-6;               % 百万分之几
+    glv.f = f;                      % 扁率
+    glv.Rp = (1-glv.f)*glv.Re;      % 短半轴
+    glv.e = sqrt(2*glv.f-glv.f^2); glv.e2 = glv.e^2; % 第一偏心距
+    glv.ep = sqrt(glv.Re^2-glv.Rp^2)/glv.Rp; glv.ep2 = glv.ep^2; % 第二偏心距
+    glv.wie = wie;                  % 地球自转角速度
+    glv.deg = pi/180;               % 弧度
+    glv.min = glv.deg/60;           % 弧分
+    glv.sec = glv.min/60;           % 弧秒
+    glv.hur = 3600;                 % 时间 小时 (1hur=3600second)
+    glv.dps = pi/180/1;             % 弧度/秒
+    glv.dph = glv.deg/glv.hur;      % 弧度/小时
+    glv.dpss = glv.deg/sqrt(1);     % 弧度/sqrt（秒）
+    glv.dpsh = glv.deg/sqrt(glv.hur);  % 弧度/sqrt（小时）
+    glv.dphpsh = glv.dph/sqrt(glv.hur); % (弧度/小时) / sqrt(小时)
+    glv.dph2 = glv.dph/glv.hur;    % （弧度/小时）/小时
+    glv.Hz = 1/1;                   % Hz
+    glv.dphpsHz = glv.dph/glv.Hz;   % (弧度/小时) / sqrt(Hz)
+    glv.dphpg = glv.dph/glv.g0;     % （弧度/小时）/g
+    glv.dphpg2 = glv.dphpg/glv.g0;  % （弧度/小时） / g^2
+    glv.ugpsHz = glv.ug/sqrt(glv.Hz);  % ug / sqrt(Hz)
+    glv.ugpsh = glv.ug/sqrt(glv.hur); % ug / sqrt(小时)
+    glv.mpsh = 1/sqrt(glv.hur);     % m / sqrt(小时)
+    glv.mpspsh = 1/1/sqrt(glv.hur); % (m/s) / sqrt(小时), 1*mpspsh~=1700*ugpsHz
+    glv.ppmpsh = glv.ppm/sqrt(glv.hur); % ppm / sqrt(小时)
+    glv.mil = 2*pi/6000;            % mil
+    glv.nm = 1853;                  % 海里
+    glv.kn = glv.nm/glv.hur;        % 节（速度单位）
+    glv.wm_1 = [0,0,0]; glv.vm_1 = [0,0,0];   % 陀螺仪和加速度计初始化
+    glv.cs = [                      % 圆锥和划桨误差补偿系数
+        [2,    0,    0,    0,    0    ]/3
+        [9,    27,   0,    0,    0    ]/20
+        [54,   92,   214,  0,    0    ]/105
+        [250,  525,  650,  1375, 0    ]/504 
+        [2315, 4558, 7296, 7834, 15797]/4620 ];
+    glv.csmax = size(glv.cs,1)+1;  % 最大子样本数
+    glv.v0 = [0;0;0];    % 3x1 零向量
+    glv.qI = [1;0;0;0];  % 单位四元数
+    glv.I33 = eye(3); glv.o33 = zeros(3);  % 3x3 单位 & 零 矩阵
+    glv.pos0 = [34.246048*glv.deg; 108.909664*glv.deg; 380]; %  导航初始 ‘纬度、经度、高度’ 
+    glv.eth = []; glv.eth = earth(glv.pos0);
+    [glv.rootpath, glv.datapath, glv.mytestflag] = psinsenvi;
+    glv1 = glv;
+
+
+##### SOURCE END #####
+--></body></html>
